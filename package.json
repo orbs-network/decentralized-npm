@@ -1,0 +1,40 @@
+{
+  "name": "decentralized-npm",
+  "version": "1.0.0",
+  "description": "Decentralized npm registry",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "jest",
+    "lint:fix": "prettier --write 'src/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bolshchikov/decentralized-npm.git"
+  },
+  "keywords": [
+    "decentralized",
+    "blockchain",
+    "npm",
+    "registry"
+  ],
+  "author": "Sergey Bolshchikov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bolshchikov/decentralized-npm/issues"
+  },
+  "homepage": "https://github.com/bolshchikov/decentralized-npm#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "nodemon": "^1.18.11",
+    "prettier": "^1.17.0"
+  }
+}
