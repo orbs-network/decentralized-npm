@@ -5,7 +5,7 @@ module.exports = () => {
 
   router.put('/:packageName', async (req, res) => {
     try {
-      console.log(req.params.packageName);
+      console.log(req.headers);
       console.log(req.body);
       res.send({});
     } catch (err) {

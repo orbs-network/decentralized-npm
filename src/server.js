@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const authRouteFactory = require('./routes/auth');
 const pingRouteFactory = require('./routes/ping');
-const loginRouteFactory = require('./routes/auth');
+const publishRouteFactory = require('./routes/publish');
 
 class FrontendServer {
   constructor(port) {
@@ -9,8 +10,9 @@ class FrontendServer {
     this.expressApp = express();
     this.expressApp.use(bodyParser.json());
 
-    this.expressApp.use(loginRouteFactory());
+    this.expressApp.use(authRouteFactory());
     this.expressApp.use(pingRouteFactory());
+    this.expressApp.use(publishRouteFactory());
 
     this.expressApp.use('*', (req, res) => {
       console.log(req.method, req.originalUrl);
