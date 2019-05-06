@@ -28,3 +28,15 @@ If the package doesn't have an owner, the address of a current user will be adde
 
 #### `npm run cli -- owner rm <packageName> <userAddress>`
 Removes the specified `userAddress` from the list of owners of specified `packageName`
+
+## Testing
+### Unit tests `npm test`
+It runs all tests using jest including integration tests with gamma server.
+
+**Notice!** Tests that are using gamma, due to its performace of start/stop of docker, are currently stateful, meaning that if you are changing the state of a contract, it persists to other tests in a suite.
+
+### Coverage `npm run test:coverage`
+It will run tests and generate coverage report.
+
+## License
+MIT.
