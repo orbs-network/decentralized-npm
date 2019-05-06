@@ -5,7 +5,7 @@
   "main": "./src/cli/index.js",
   "scripts": {
     "cli": "node ./src/cli/index.js",
-    "test": "jest --watch",
+    "test": "jest --watch --setupTestFrameworkScriptFile=./tests/jest.init.js",
     "test:cov": "jest --coverage",
     "lint:fix": "prettier --write 'src/**/*.js'"
   },
