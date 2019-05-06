@@ -1,29 +1,40 @@
 package main
 
 import (
+	"bytes"
+
 	"github.com/orbs-network/orbs-contract-sdk/go/sdk/v1"
+	"github.com/orbs-network/orbs-contract-sdk/go/sdk/v1/address"
 	"github.com/orbs-network/orbs-contract-sdk/go/sdk/v1/state"
 )
 
-var PUBLIC = sdk.Export(addOwner, hasOwner, isOwner, removeOwner)
+var PUBLIC = sdk.Export(addOwner, getOwners)
 var SYSTEM = sdk.Export(_init)
 
 func _init() {}
 
-func addOwner(packageName, publicKey string) {}
+func getOwners(packageName string) []byte {
+	name := []byte(packageName)
+	return state.ReadBytes(name)
+}
 
-// this is a current workaround due to lack of support of bool type
-func hasOwner(packageName string) uint32 {
-	key := []byte(packageName)
-	owners := state.ReadBytes(key)
-	if len(owners) == 0 {
-		return 0
+func hasOwner(packageName string) bool {
+	owners := getOwners(packageName)
+	return len(owners) != 0
+}
+
+func isOwner(packageName string, userAddress []byte) bool {
+	owners := getOwners(packageName)
+	return bytes.Contains(owners, userAddress)
+}
+
+func addOwner(packageName string, userAddress []byte) {
+	name := []byte(packageName)
+	if !hasOwner(packageName) {
+		state.WriteBytes(name, address.GetSignerAddress())
 	}
-	return 1
+	owners := getOwners(packageName)
+	if !isOwner(packageName, userAddress) {
+		state.WriteBytes(name, append(owners, userAddress...))
+	}
 }
-
-func isOwner(packageName, publicKey string) bool {
-	return false
-}
-
-func removeOwner(packageName, publicKey string) {}

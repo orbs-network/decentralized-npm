@@ -61,4 +61,10 @@ describe('npmrc service', () => {
     npmrc.setPrivateKey('my-private-key');
     expect(npmrc.getPrivateKey()).toEqual('my-private-key');
   });
+
+  it('should get/set user address', () => {
+    npmrc.create();
+    npmrc.setAddress('my-address');
+    expect(npmrc.getAddress()).toEqual('my-address');
+  });
 });

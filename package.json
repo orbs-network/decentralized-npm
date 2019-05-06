@@ -6,8 +6,11 @@
   "scripts": {
     "cli": "node ./src/cli/index.js",
     "test": "jest --watch --setupTestFrameworkScriptFile=./tests/jest.init.js",
-    "test:cov": "jest --coverage",
-    "lint:fix": "prettier --write 'src/**/*.js'"
+    "test:cov": "jest --coverage --setupTestFrameworkScriptFile=./tests/jest.init.js",
+    "lint:fix": "prettier --write 'src/**/*.js'",
+    "gamma:start": "gamma-cli start-local",
+    "gamma:stop": "gamma-cli stop-local",
+    "gamma:deploy:owners": "gamma-cli deploy ./src/contracts/owners.go -name owners -signer user1"
   },
   "repository": {
     "type": "git",

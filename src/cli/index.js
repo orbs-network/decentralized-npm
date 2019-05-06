@@ -18,31 +18,34 @@ const orbsClient = new Client(
   NetworkType.NETWORK_TYPE_TEST_NET,
 );
 
-const ownership = new OwnershipService(orbsClient);
+const ownership = new OwnershipService(orbsClient, npmrc);
 
 program
   .command('login')
   .description('login or create user')
-  .action(() => {
-    const loginAction = loginActionFactory(npmrc);
-    const pk = loginAction();
-    console.log(`User is logged in with ${pk}`);
+  .action(async () => {
+    const loginAction = await loginActionFactory(npmrc);
+    const address = loginAction();
+    console.log(`User is logged in with ${address}`);
   });
 
 program
-  .command('owner <action> [pkg] [publicKey]')
+  .command('owner <action> <pkg> [address]')
   .description('manage package owners')
-  .action((action, pkg, publicKey) => {
-    const ownerActions = ownerActionsFactory(npmrc, ownership);
+  .action(async (action, pkg, address) => {
+    const ownerActions = ownerActionsFactory(ownership);
     switch (action) {
       case 'ls':
-        ownerActions.list(pkg);
+        // eslint-disable-next-line no-case-declarations
+        const list = await ownerActions.list(pkg);
+        console.log(list);
         break;
       case 'add':
-        ownerActions.add(pkg, publicKey);
+        await ownerActions.add(pkg, address);
+        console.log(`User with ${address} has been added`);
         break;
       case 'rm':
-        ownerActions.remove(pkg, publicKey);
+        ownerActions.remove(pkg, address);
         break;
       default:
         throw new Error('unrecognized owner action');

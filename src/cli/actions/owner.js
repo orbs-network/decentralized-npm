@@ -1,20 +1,13 @@
-const ownerActionsFactory = (npmrc, ownership) => ({
-  list() {},
+const ownerActionsFactory = ownership => ({
+  list(pkg) {
+    return ownership.getOwners(pkg);
+  },
 
-  async add(pkg, key) {
-    const currUserKey = npmrc.getPublicKey();
-    if (!npmrc.hasPublicKey()) {
-      throw new Error('User should login before. Do `npm login` first.');
+  add(pkg, address) {
+    if (address === undefined) {
+      throw new Error('Adding owner expect to receive an address');
     }
-    const isTaken = await ownership.hasOwner(pkg);
-    if (!isTaken) {
-      await ownership.addOwner(pkg, currUserKey);
-    }
-    const isOwner = await ownership.isOwner(pkg, currUserKey);
-    if (!isOwner) {
-      throw new Error('Only owner can add other owners');
-    }
-    await ownership.addOwner(pkg, key);
+    return ownership.addOwner(pkg, address);
   },
 
   remove() {},

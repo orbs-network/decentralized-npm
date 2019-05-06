@@ -5,8 +5,9 @@ const login = npmrc => () => {
     const account = createAccount();
     npmrc.setPublicKey(encodeHex(account.publicKey));
     npmrc.setPrivateKey(encodeHex(account.privateKey));
+    npmrc.setAddress(account.address);
   }
-  return npmrc.getPublicKey();
+  return npmrc.getAddress();
 };
 
 module.exports = login;

@@ -29,6 +29,7 @@ class NpmrcService {
     this.path = `${configFolder}/${defaultFilename}`;
     this.publicKeyField = 'user_public_key';
     this.privateKeyField = 'user_private_key';
+    this.addressField = 'user_address';
     this.registryField = 'registry';
     this.orbsAddressField = 'orbs_address';
     this.virtualChainIdField = 'virtual_chain_id';
