@@ -2,12 +2,15 @@
   "name": "decentralized-npm",
   "version": "1.0.0",
   "description": "Decentralized npm registry",
-  "main": "index.js",
+  "main": "./src/cli/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest",
-    "lint:fix": "prettier --write 'src/**/*.js'"
+    "cli": "node ./src/cli/index.js",
+    "test": "jest --watch --setupTestFrameworkScriptFile=./tests/jest.init.js",
+    "test:cov": "jest --coverage --setupTestFrameworkScriptFile=./tests/jest.init.js",
+    "lint:fix": "prettier --write 'src/**/*.js'",
+    "gamma:start": "gamma-cli start-local",
+    "gamma:stop": "gamma-cli stop-local",
+    "gamma:deploy:owners": "gamma-cli deploy ./src/contracts/owners.go -name owners -signer user1"
   },
   "repository": {
     "type": "git",
@@ -27,13 +30,17 @@
   "homepage": "https://github.com/bolshchikov/decentralized-npm#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "express": "^4.16.4"
+    "commander": "^2.20.0",
+    "express": "^4.16.4",
+    "orbs-client-sdk": "0.0.6"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-jest": "^22.5.1",
+    "jest": "^24.7.1",
     "nodemon": "^1.18.11",
     "prettier": "^1.17.0"
   }

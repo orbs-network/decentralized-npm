@@ -21,7 +21,9 @@ class FrontendServer {
   }
 
   start() {
-    this.server = this.expressApp.listen(this.port, () => console.log(`Frontend server started on port ${this.port}`));
+    this.server = this.expressApp.listen(this.port, () =>
+      console.log(`Frontend server started on port ${this.port}`),
+    );
   }
 
   stop() {
