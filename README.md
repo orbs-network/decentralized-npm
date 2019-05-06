@@ -12,13 +12,11 @@
 ## Supported Actions
 
 ### Login
+#### `npm run cli -- login`
 Login creates a `.npmrc` with configuration or registry and user keys.
-```bash
-npm run cli -- login
-```
 
 ### Owner
-Owner commands allow to interact with the list of owners per package.
+> Owner commands allow to interact with the list of owners per package.
 
 #### `npm run cli -- owner ls <packageName>`
 Lists of all owners for corresponding `packageName`.
