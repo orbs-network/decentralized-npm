@@ -10,7 +10,9 @@ const ownerActionsFactory = ownership => ({
     return ownership.addOwner(pkg, address);
   },
 
-  remove() {},
+  remove(pkg, address) {
+    return ownership.removeOwner(pkg, address);
+  },
 });
 
 module.exports = ownerActionsFactory;

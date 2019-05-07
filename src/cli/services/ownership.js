@@ -21,6 +21,18 @@ class OwnershipService {
     return this.orbsClient.sendTransaction(tx);
   }
 
+  removeOwner(pkgName, address) {
+    const [tx] = this.orbsClient.createTransaction(
+      decodeHex(this.npmrc.getPublicKey()),
+      decodeHex(this.npmrc.getPrivateKey()),
+      CONTRACT_NAME,
+      'removeOwner',
+      [argString(pkgName), argAddress(address)],
+    );
+
+    return this.orbsClient.sendTransaction(tx);
+  }
+
   async getOwners(pkgName) {
     const query = this.orbsClient.createQuery(
       decodeHex(this.npmrc.getPublicKey()),
