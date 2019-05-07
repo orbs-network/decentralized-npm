@@ -11,23 +11,17 @@
 
 ## Supported Actions
 
-### Login
-#### `npm run cli -- login`
-Login creates a `.npmrc` with configuration or registry and user keys.
+Below is the list of supported actions. It specifies primary and secondary actions with parameters, if applicable.
 
-### Owner
-> Owner commands allow to interact with the list of owners per package.
+E.g. `npm run cli -- owner add react 0x123456779101213141`
 
-#### `npm run cli -- owner ls <packageName>`
-Lists of all owners for corresponding `packageName`.
-
-#### `npm run cli -- owner add <packageName> <userAddress>`
-Adds the specified `userAddress` of a new user as an owner to the specified `packageName`.
-
-If the package doesn't have an owner, the address of a current user will be added as a first owner. In case specified `userAddress` is different from current user address, it will be added as a second owner.
-
-#### `npm run cli -- owner rm <packageName> <userAddress>`
-Removes the specified `userAddress` from the list of owners of specified `packageName`
+|Primary Action|Secondary Action|Description|
+|--------------|----------------|-----------|
+|`login`||Login creates a `.npmrc` with configuration or registry and user keys.|
+|`owner`||Owner commands allow to interact with the list of owners per package.|
+||`ls <packageName>`|Lists of all owners for corresponding `packageName`.|
+||`add <packageName> <userAddress>`|Adds the specified `userAddress` of a new user as an owner to the specified `packageName`|
+||`rm <packageName> <userAddress>`|Removes the specified `userAddress` from the list of owners of specified `packageName`|
 
 ## Testing
 ### Unit tests `npm test`
